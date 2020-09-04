@@ -23,8 +23,10 @@ class NoteController extends Controller
 			$response['api_status'] = 0;
 			$response['api_message'] = 'User tidak terdaftar';
 			$response['error_code'] = 'Error #0, User is invalid';
-			return response()->json($response);
-			exit();
+			$res = response()->json($response);
+			$res->send();
+			exit;
+			dd('x');
 		}
 
 		$this->user = $user;
