@@ -50,7 +50,7 @@ class Niwang
 			$filename = md5(uniqid()) . '.' . $ext;
 			$filesize = $file->getSize();
 			$file_path = 'uploads/' . ($directory == '' ? '' : $directory . '/') . date('Y-m');
-			$directory_path = storage_path('app/' . $file_path);
+			$directory_path = base_path('public/' . $file_path);
 
 			if ($filesize < $max_size) {
 				$result['api_status'] = 0;
@@ -67,10 +67,6 @@ class Niwang
 				$res->send();
 				exit;
 			} else {
-                //create directory
-				// Storage::makeDirectory($file_path);
-				// dd('x');
-
                 //upload file
 				if ($file->move($directory_path, $filename)) {
 					return $file_path . '/' . $filename;
